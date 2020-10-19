@@ -14,5 +14,5 @@ It is a simple flask based software. simply install the requirements and run app
 
 ## :clap: VideoLink as a sample output for my mask detection system
 
-[![Watch the video](https://imgur.com/6G0gbPG.jpg)](https://drive.google.com/file/d/1jKcx7tS5amD0SMrpNnpJ9u2GSCvxtOhS/view?usp=sharing)
+[![Watch the video](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.ionos.com%2Foffice-solutions%2Fcreate-an-email-address&psig=AOvVaw3UqRkhWopvp4XhhL89d054&ust=1603183605011000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLi_8b-iwOwCFQAAAAAdAAAAABAD)](https://www.youtube.com/watch?v=Q18fsfWhxpI)
 
