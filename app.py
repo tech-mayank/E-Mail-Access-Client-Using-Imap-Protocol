@@ -7,11 +7,11 @@ import os
 app = Flask(__name__,template_folder='templates')
 CORS(app)
 
-host = 'imap.gmail.com'
-username = 'assignment1csl334'
-password = 'apismasa'
+host = 'imap.gmail.com'     # here we are using our gmail mail servers.
+username = '#############' #put your email id here
+password = '###########'    # password corresponding to given email id
 
-mail = imaplib.IMAP4_SSL(host)
+mail = imaplib.IMAP4_SSL(host)  #you can also use non ssl version of imaplib library.
 # mail.login(username, password)
 # mail.select("inbox")
 
