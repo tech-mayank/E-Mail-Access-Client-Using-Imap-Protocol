@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inbox</title>
+     <link rel="shortcut icon" href="https://www.flaticon.com/svg/static/icons/svg/1161/1161806.svg">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="slider.css">
+    <link rel="stylesheet" href="base.css"> -->
+    <!-- <link href="{{ url_for('static', filename='css/slider.css') }}"rel="stylesheet"> -->
+    <link href="{{ url_for('static', filename='css/base.css') }}"rel="stylesheet">
+</head>
+<style>
+body {
+  background-color: #000;
+}
+
+.slideshow { 
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -5;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.slideshow li { 
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 0;
+  animation: imageAnimation 25s linear infinite; 
+}
+.slideshow li:nth-child(1) { 
+  background-image: url('{{ url_for("static", filename="img/first.jpg") }}'); 
+}
+.slideshow li:nth-child(2) { 
+  background-image: url('{{ url_for("static", filename="img/2.jpg") }}');
+  animation-delay: 5s; 
+}
+.slideshow li:nth-child(3) { 
+  background-image: url('{{ url_for("static", filename="img/3.jpg") }}');
+  animation-delay: 10s; 
+}
+.slideshow li:nth-child(4) { 
+  background-image: url('{{ url_for("static", filename="img/4.jpg") }}');
+  animation-delay: 15s; 
+}
+.slideshow li:nth-child(5) { 
+  background-image: url('{{ url_for("static", filename="img/5.jpg") }}');
+  animation-delay: 20s; 
+}
+@keyframes imageAnimation { 
+  0% { 
+    opacity: 0; 
+    animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  20% {
+    opacity: 1
+  }
+  30% {
+    opacity: 0
+  }
+}
+</style>
+<body>
+<!-- background slider -->
+    <ul class="slideshow">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+<div class="container">
+        <!-- <h2 class="title"><i class="fa fa-envelope-o fa-7px" aria-hidden="true"></i> Inbox</h2>  -->
+        <h2><i class="fa fa-envelope-o fa-7px" aria-hidden="true"></i><b style="padding: 2px;color:white"> Imap-Buddy</b></h2>
+      
+<div class="row">
+    <div class="col-md-3 col-xs-4">
+            <a href="#email-compose.html" class="btn btn-info btn-block">Compose</a>
+            <div class="panel panel-default p-0  m-t-20">
+                <div class="panel-body p-0">
+                    <div class="list-group no-border ">
+                      <a href="{{ url_for('inbox_mails')}}" class="list-group-item" style="color:white"><i class="fa fa-download m-r-5"></i> Inbox</a>
+                      <a href="#" class="list-group-item" style="color:white"><i class="fa fa-star-o m-r-5"></i> Starred</a>
+                      <a href="{{ url_for('draft_mails')}}" class="list-group-item" style="color:white"><i class="fa fa-file-text-o m-r-5"></i> Draft </a>
+                      <a href="{{ url_for('sent_mails')}}" class="list-group-item" style="color:white"><i class="fa fa-paper-plane-o m-r-5"></i> Sent Mail</a>
+                      <a href="{{ url_for('trash_mails')}}" class="list-group-item" style="color:white"><i class="fa fa-trash-o m-r-5"></i> Trash </a>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <div class="col-sm-9">
+        <!-- Star form compose mail -->
+        <form class="form-horizontal">
+            <div class="panel  rounded shadow">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h3 class="panel-title">View Mail</h3>
+                    </div>
+                    <div class="pull-right">
+                        <div class="form-group no-margin no-padding">
+                            <input type="text" class="form-control" placeholder="Search mail">
+                            <button type="submit" class="btn btn-theme fa fa-search form-control-feedback"></button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div><!-- /.panel-heading -->
+                <div class="panel-sub-heading inner-all">
+                    <div class="pull-left">
+                        <h3 class="lead no-margin" style="color:white;font-size: 15px">{{mail_subject}}</h3>
+                    </div>
+                    <div class="pull-right">
+                        <a class="btn btn-danger btn-sm tooltips" href="{{ url_for('delete_mail', to = mail_to, from_feild = mail_from, date = mail_date, subject = mail_subject , source_of_mail = source) }}" style="color:white"><i class="fa fa-trash-o"></i></a>
+                        <a href="#mail-compose.html" class="btn btn-success btn-sm"><i class="fa fa-reply"></i> Reply</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div><!-- /.panel-sub-heading -->
+                
+                <div class="panel-sub-heading inner-all">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-8 col-xs-7" style="color:white;font-size: 15px">
+                            <img src="https://i2.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" class="img-circle senden-img" style="width: 20px;height:20px">
+                            <span style="color:white">{{mail_from}}</span>
+                            to
+                            <strong style="color:white">{{mail_to}}</strong>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-5">
+                            <p class="pull-right" style="color:white"> {{mail_date}}</p>
+                        </div>
+                    </div>
+                </div><!-- /.panel-sub-heading -->
+                <div class="panel-body">
+                    <div class="view-mail">
+                        <p style="color:white" style="color: white;font-size: 20px">
+                            {{mail_body}}
+                        </p>
+                        
+                       
+                    </div>
+                    <!-- <div class="view-mail">
+                        {%for i in mail_attachments%}
+                        <p>
+                            {{ i }}
+                        </p>
+                        {%endfor%}
+                    </div> -->
+                    <!-- /.view-mail -->
+                    {% if len_attachments > 0 %}
+                    <div class="attachment-mail">
+                        <p>
+                            <span><i class="fa fa-paperclip"></i> attachments — </span>
+                            <a href="{{ url_for('download_attachments', attachments = mail_attachments, source_of_mail = source) }}">Download all attachments</a>
+                            |
+                            <!-- <a href="#">View all images</a> -->
+                        </p>
+                        <!-- {% for i in mail_attachments %}
+                        <p>
+                            {{ i }}
+                        </p>
+                        {% endfor %} -->
+                       
+                    </div>
+                    {%endif%}
+                </div><!-- /.panel-body -->
+
+                <div class="panel-footer">
+                    <div class="pull-right">
+                        <a href="#mail-compose.html" class="btn btn-success btn-sm"><i class="fa fa-reply"></i> Reply</a>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-arrow-right"></i> Forward</button>
+                        <button class="btn btn-danger btn-sm tooltips"><i class="fa fa-trash-o"></i></button>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div><!-- /.panel-footer -->
+            </div><!-- /.panel -->
+        </form>
+        <!--/ End form compose mail -->
+        
+    </div>
+</div>
+</body>
+</html>

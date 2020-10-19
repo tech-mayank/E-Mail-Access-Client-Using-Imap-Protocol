@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inbox</title>
+     <link rel="shortcut icon" href="https://www.flaticon.com/svg/static/icons/svg/1161/1161806.svg">
+     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="slider.css">
+    <link rel="stylesheet" href="base.css"> -->
+    <link href="{{ url_for('static', filename='css/slider.css') }}"rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/base.css') }}"rel="stylesheet">
+
+</head>
+<body>
+<!-- background slider -->
+    <ul class="slideshow">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+<div class="container">
+        <h2 class="title"><i class="fa fa-envelope-o fa-7px" aria-hidden="true"></i> Inbox</h2> 
+      
+<div class="row">
+    <div class="col-md-3 col-xs-4">
+            <a href="#email-compose.html" class="btn btn-info btn-block">Compose</a>
+            <div class="panel panel-default p-0  m-t-20">
+                <div class="panel-body p-0">
+                    <div class="list-group no-border">
+                      <a href="#" class="list-group-item "><i class="fa fa-download m-r-5"></i> Inbox </a>
+                      <a href="#" class="list-group-item"><i class="fa fa-star-o m-r-5"></i> Starred</a>
+                      <a href="draft_mails.html" class="list-group-item"><i class="fa fa-file-text-o m-r-5"></i> Draft </a>
+                      <a href="sent_mails.html" class="list-group-item"><i class="fa fa-paper-plane-o m-r-5"></i> Sent Mail</a>
+                      <a href="trash_mails.html" class="list-group-item"><i class="fa fa-trash-o m-r-5"></i> Trash </a>
+                    </div>
+                </div>
+            </div>
+
+            
+    </div>
+    <div class="col-sm-9">
+        <!-- Star form compose mail -->
+        <form class="form-horizontal">
+            <div class="panel  rounded shadow">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h3 class="panel-title">View Mail</h3>
+                    </div>
+                    <div class="pull-right">
+                        <div class="form-group no-margin no-padding has-feedback">
+                            <input type="text" class="form-control" placeholder="Search mail">
+                            <button type="submit" class="btn btn-theme fa fa-search form-control-feedback"></button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div><!-- /.panel-heading -->
+                <div class="panel-sub-heading inner-all">
+                    <div class="pull-left">
+                        <h3 class="lead no-margin">{{mail_subject}}</h3>
+                    </div>
+                    <div class="pull-right">
+                        <button class="btn btn-danger btn-sm tooltips" data-container="body" data-original-title="Trash" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-trash-o"></i></button>
+                        <a href="#mail-compose.html" class="btn btn-success btn-sm"><i class="fa fa-reply"></i> Reply</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div><!-- /.panel-sub-heading -->
+                <div class="panel-sub-heading inner-all">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-8 col-xs-7">
+                            <img src="https://i2.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1"  class="img-circle senden-img">
+                            <span>{{mail_from}}</span>
+                            to
+                            <strong>{{mail_to}}</strong>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-5">
+                            <p class="pull-right"> {{mail_date}}</p>
+                        </div>
+                    </div>
+                </div><!-- /.panel-sub-heading -->
+                <div class="panel-body">
+                    <div class="view-mail">
+                        <p>
+                            {{mail_body}}
+                        </p>
+                        
+                       
+                    </div><!-- /.view-mail -->
+                    <div class="attachment-mail">
+                        <p>
+                            <span><i class="fa fa-paperclip"></i> 3 attachments — </span>
+                            <a href="#">Download all attachments</a>
+                            |
+                            <a href="#">View all images</a>
+                        </p>
+                        <ul>
+                            <li>
+                                <a class="atch-thumb" href="#" data-toggle="modal" data-target=".bs-example-modal-photo1">
+                                    <img  src="https://via.placeholder.com/200x200/" alt="...">
+                                </a>
+
+                                <a class="name" href="#">
+                                    IMG_001.jpg
+                                    <span>20KB</span>
+                                </a>
+
+                                <div class="links">
+                                    <a href="#" data-toggle="modal" data-target=".bs-example-modal-photo1">View</a> -
+                                    <a href="#">Download</a>
+                                </div>
+
+                            </li>
+
+                            <li>
+                                <a class="atch-thumb" href="#" data-toggle="modal" data-target=".bs-example-modal-photo2">
+                                    <img  src="https://via.placeholder.com/200x200/" alt="...">
+                                </a>
+
+                                <a class="name" href="#">
+                                    IMG_002.jpg
+                                    <span>15KB</span>
+                                </a>
+
+                                <div class="links">
+                                    <a href="#" data-toggle="modal" data-target=".bs-example-modal-photo2">View</a> -
+                                    <a href="#">Download</a>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a class="atch-thumb" href="#" data-toggle="modal" data-target=".bs-example-modal-photo3">
+                                    <img  src="https://via.placeholder.com/200x200/" alt="...">
+                                </a>
+
+                                <a class="name" href="#">
+                                    IMG_003.jpg
+                                    <span>13KB</span>
+                                </a>
+
+                                <div class="links" data-toggle="modal" data-target=".bs-example-modal-photo3">
+                                    <a href="#">View</a> -
+                                    <a href="">Download</a>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div><!-- /.attachment mail -->
+                </div><!-- /.panel-body -->
+                <div class="panel-footer">
+                    <div class="pull-right">
+                        <a href="#mail-compose.html" class="btn btn-success btn-sm"><i class="fa fa-reply"></i> Reply</a>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-arrow-right"></i> Forward</button>
+                        <button class="btn btn-danger btn-sm tooltips" data-container="body" data-original-title="Trash" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-trash-o"></i></button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div><!-- /.panel-footer -->
+            </div><!-- /.panel -->
+        </form>
+        <!--/ End form compose mail -->
+        
+    </div>
+</div>
+</body>
+</html>

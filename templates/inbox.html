@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inbox</title>
+    <link rel="shortcut icon" href="https://www.flaticon.com/svg/static/icons/svg/1161/1161806.svg">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="slider.css">
+    <link rel="stylesheet" href="base.css"> -->
+    <!-- <link href="{{ url_for('static', filename='css/slider.css') }}" rel="stylesheet"> -->
+    <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
+    
+</head>
+<style>
+body {
+  background-color: #000;
+}
+
+.slideshow { 
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -5;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.slideshow li { 
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 0;
+  animation: imageAnimation 25s linear infinite; 
+}
+.slideshow li:nth-child(1) { 
+  background-image: url('{{ url_for("static", filename="img/first.jpg") }}'); 
+}
+.slideshow li:nth-child(2) { 
+  background-image: url('{{ url_for("static", filename="img/2.jpg") }}');
+  animation-delay: 5s; 
+}
+.slideshow li:nth-child(3) { 
+  background-image: url('{{ url_for("static", filename="img/3.jpg") }}');
+  animation-delay: 10s; 
+}
+.slideshow li:nth-child(4) { 
+  background-image: url('{{ url_for("static", filename="img/4.jpg") }}');
+  animation-delay: 15s; 
+}
+.slideshow li:nth-child(5) { 
+  background-image: url('{{ url_for("static", filename="img/5.jpg") }}');
+  animation-delay: 20s; 
+}
+@keyframes imageAnimation { 
+  0% { 
+    opacity: 0; 
+    animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  20% {
+    opacity: 1
+  }
+  30% {
+    opacity: 0
+  }
+}
+</style>
+<body>
+    <!-- background slider -->
+    <ul class="slideshow">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+
+<div class="container">
+        <h2><i class="fa fa-envelope-o fa-7px" aria-hidden="true"></i><b style="padding: 2px;color:white"> Imap-Buddy</b></h2>    
+    <div class="row">
+        <!-- Left sidebar -->
+        <div class="col-md-3 col-xs-4">
+            <a href="#email" class="btn btn-info btn-block">Compose</a>
+            <div class="panel panel-default p-0 m-t-20">
+                <div class="panel-body p-0">
+                    <div class="list-group no-border">
+                      <a href="{{ url_for('inbox_mails')}}" class="list-group-item " style="color:white"><i class="fa fa-download m-r-5"></i> Inbox <b></b></a>
+                      <a href="#" class="list-group-item" style="color:white"><i class="fa fa-star-o m-r-5"></i> Starred</a>
+                      <a href="{{ url_for('draft_mails')}}" style="color:white" class="list-group-item"><i class="fa fa-file-text-o m-r-5"></i> Draft <b></b></a>
+                      <a href="{{ url_for('sent_mails')}}" style="color:white" class="list-group-item"><i class="fa fa-paper-plane-o m-r-5"></i> Sent Mail</a>
+                      <a href="{{ url_for('trash_mails')}}" style="color:white" class="list-group-item"><i class="fa fa-trash-o m-r-5"></i> Trash <b></b></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- Right Sidebar -->
+        <div class="col-md-9 col-xs-8">
+            <div class="row">
+                <div class="panel panel-default m-t-20">
+                    <div class="panel-body">
+                                <form class="delete" action="{{ url_for('predict')}}" method="POST">
+                                        <!-- <input type="text" name="news" class="form-control" placeholder="Enter the news" required="required" style="width: 400px" /> -->
+                                        <button  class="btn btn-warning " type="submit">Show mails</button>
+                                </form>
+                                
+                                <form class="delete" action="{{ url_for('predict_delete')}}" method="POST">
+                                        <button  class="btn btn-danger" type="submit">Empty Inbox</button>
+                                </form>
+
+                                <form class="delete" action="{{ url_for('search_mail', source_of_mail = 'inbox')}}" method="POST">
+                                        <input type="text" name="search_key" placeholder = "search">
+                                        <button  class="btn btn-danger" type="submit">Search</button>
+                                </form>
+                                <!-- <div class="form-group no-margin no-padding">
+                                    <form class="delete" action="{{ url_for('search_mail', source_of_mail = 'inbox')}}" method="POST">
+                                        <input type="text" name="search_key" placeholder="Search mail">
+                                        <button type="submit" class="btn btn-theme fa fa-search form-control-feedback"></button>
+                                    </form>
+                                </div> -->
+                                <form class="delete" action="{{ url_for('logout')}}" method="POST">
+                                    <button  class="btn btn-danger" type="submit">LOGOUT</button>
+                                </form>
+                        
+                        <table class="table table-hover">
+                            <tbody>
+                                {%for i in prediction_text%}
+                                <tr class="active">
+                                    <td >
+                                        <label >
+                                            <input type="checkbox"><i class="fa"></i>
+                                        </label>
+                                    </td>
+                                    <td class="mail-rateing">
+                                        <i class="fa fa-star"></i>
+                                    </td>
+                                    <td>
+                                        <a href="{{ url_for('show_body', mail_body = i['Body'], mail_from = i['From'],mail_to = i['To'],mail_date = i['Date'],mail_subject = i['Subject'], mail_attachments = i['Attachment(s)'],source = 'inbox')}}">{{ i['From'] }}</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ url_for('show_body', mail_body = i['Body'], mail_from = i['From'],mail_to = i['To'],mail_date = i['Date'],mail_subject = i['Subject'],mail_attachments = i['Attachment(s)'],source = 'inbox')}}">{{ i['Subject'] }}</a>
+                                    </td>
+                                    <td>
+                                        <!-- <i class="fa fa-paperclip"></i> -->
+                                        {%if i in unseen_mails%}
+                                        <a href="{{ url_for('show_body', mail_body = i['Body'], mail_from = i['From'],mail_to = i['To'],mail_date = i['Date'],mail_subject = i['Subject'],mail_attachments = i['Attachment(s)'],source = 'inbox')}}">unseen</a>
+                                        {%else%}
+                                        <a href="{{ url_for('show_body', mail_body = i['Body'], mail_from = i['From'],mail_to = i['To'],mail_date = i['Date'],mail_subject = i['Subject'],mail_attachments = i['Attachment(s)'], source = 'inbox')}}">seen</a>
+                                        {%endif%}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ i['Date'] }}
+                                    </td>
+                                </tr>
+                                {%endfor%}
+                            </tbody>
+                        </table>
+                    
+                    <hr>
+                    
+                        <div class="row">
+                            <div class="col-xs-7">
+                                Showing 1-All Mails
+                            </div>
+                            <div class="col-xs-5">
+                                <div class="btn-group pull-right">
+                                  <button type="button" class="btn btn-default"><i class="fa fa-chevron-left"></i></button>
+                                  <button type="button" class="btn btn-default"><i class="fa fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> 
+                </div> 
+            </div> 
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
