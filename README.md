@@ -12,7 +12,7 @@
 
 It is a simple flask based software. simply install the requirements and run app.py file given in the folder.
 
-## :clap: VideoLink as a sample output for my mask detection system
+## :clap: VideoLink for the Demo
 
 [![Watch the video](https://github.com/tech-mayank/E-Mail-Access-Client-Using-Imap-Protocol/blob/master/thumbnail.jpg)](https://www.youtube.com/watch?v=Q18fsfWhxpI)
 
